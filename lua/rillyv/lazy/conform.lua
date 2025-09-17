@@ -7,6 +7,7 @@ return {
 				lua = { "stylua" },
 				go = { "gofmt" },
 				sql = { "sql_formatter" },
+				bash = { "beautysh" },
 			},
 			formatters = {
 				sql_formatter = {

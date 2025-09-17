@@ -20,10 +20,6 @@ return {
                 enable = true
             },
 
-            autotag = {
-                enable = true
-            },
-
             modules = {},
             ignore_install = {},
 
