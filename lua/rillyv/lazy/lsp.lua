@@ -17,10 +17,10 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				python = { "black", "isort" },
-				lua = { "stylua" },
-			},
-		})
+                python = {"black", "isort"},
+                lua = { "stylua"}
+            },
+        })
 
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			pattern = "*.sql",
@@ -48,7 +48,6 @@ return {
 				"eslint",
 				"pyright",
 				"intelephense",
-				"phpactor",
 				"marksman",
 				"jsonls",
 				"html",
@@ -100,7 +99,7 @@ return {
 							"jsconfig.json",
 							".git"
 						),
-						filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+                        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 					})
 				end,
 				["eslint"] = function()
@@ -115,11 +114,6 @@ return {
 				end,
 				["intelephense"] = function()
 					require("lspconfig").intelephense.setup({
-						capabilities = capabilities,
-					})
-				end,
-				["phpactor"] = function()
-					require("lspconfig").phpactor.setup({
 						capabilities = capabilities,
 					})
 				end,
