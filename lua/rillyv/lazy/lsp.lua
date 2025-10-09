@@ -12,15 +12,16 @@ return {
 		"L3MON4D3/LuaSnip",
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
+        "saghen/blink.cmp",
 	},
 
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-                python = {"black", "isort"},
-                lua = { "stylua"}
-            },
-        })
+				python = { "black", "isort" },
+				lua = { "stylua" },
+			},
+		})
 
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			pattern = "*.sql",
@@ -61,6 +62,7 @@ return {
 				"gopls",
 				"graphql",
 				"sqls",
+				"clangd",
 			},
 			handlers = {
 				function(server_name)
@@ -99,7 +101,7 @@ return {
 							"jsconfig.json",
 							".git"
 						),
-                        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+						filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 					})
 				end,
 				["eslint"] = function()
@@ -162,6 +164,11 @@ return {
 						capabilities = capabilities,
 					})
 				end,
+				["clangd"] = function()
+					require("lspconfig").clangd.setup({
+						capabilities = capabilities,
+					})
+				end,
 				["graphql"] = function()
 					require("lspconfig").graphql.setup({
 						capabilities = capabilities,
@@ -177,6 +184,11 @@ return {
 						root_dir = require("lspconfig.util").root_pattern(".git"),
 					})
 				end,
+                ["blink"] = function()
+                    require("lspconfig").sqls.setup({
+                        capabilities = capabilities,
+                    })
+                end,
 			},
 		})
 
@@ -214,3 +226,4 @@ return {
 		})
 	end,
 }
+
