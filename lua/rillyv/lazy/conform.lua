@@ -4,9 +4,11 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
+				php = { "php_cs_fixer" },
 				lua = { "stylua" },
 				go = { "gofmt" },
 				sql = { "sql_formatter" },
+				python = { "black", "isort" },
 			},
 			formatters = {
 				sql_formatter = {
@@ -17,6 +19,9 @@ return {
 					},
 					stdin = true,
 				},
+			},
+			format_on_save = {
+				lsp_format = "fallback",
 			},
 		})
 	end,
