@@ -9,14 +9,7 @@ return {
 	},
 
 	config = function()
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			pattern = "*.sql",
-			callback = function(args)
-				require("conform").format({ bufnr = args.buf })
-			end,
-		})
-
-        local capabilities = require("blink.cmp").get_lsp_capabilities()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		require("fidget").setup({})
 		require("mason").setup()
@@ -48,6 +41,7 @@ return {
 						capabilities = capabilities,
 					})
 				end,
+
 				["lua_ls"] = function()
 					require("lspconfig").lua_ls.setup({
 						capabilities = capabilities,
@@ -79,7 +73,7 @@ return {
 							"jsconfig.json",
 							".git"
 						),
-                        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+						filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 					})
 				end,
 				["eslint"] = function()
