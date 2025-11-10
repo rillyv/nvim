@@ -29,12 +29,6 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
-    group = RillyvGroup,
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
-})
-
 autocmd('BufEnter', {
     group = RillyvGroup,
     callback = function()
