@@ -33,3 +33,12 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+vim.keymap.set("n", "<leader>cc", function()
+  if vim.fn.getqflist({winid=1}).winid ~= 0 then
+    vim.cmd("cclose")
+  else
+    vim.cmd("copen")
+  end
+end)
+
