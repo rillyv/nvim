@@ -26,14 +26,13 @@ return {
 		vim.keymap.set("n", "<leader>ps", function()
 			local cwd = vim.loop.cwd()
 
-			builtin.grep_string({
-				search = vim.fn.input("Grep > "),
+			require("telescope.builtin").live_grep({
 				cwd = cwd,
 				additional_args = function()
 					return { "--hidden" }
 				end,
 			})
-		end, { desc = "Grep string in project" })
+		end, { desc = "Live grep in project" })
 
 		vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
 	end,

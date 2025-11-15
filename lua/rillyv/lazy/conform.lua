@@ -10,7 +10,7 @@ return {
 				sql = { "sql_formatter" },
 				python = { "black", "isort" },
 			},
-			formatters = {
+			formatters = { 
 				sql_formatter = {
 					command = "sql-formatter",
 					args = {

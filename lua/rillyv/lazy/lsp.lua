@@ -164,5 +164,7 @@ return {
 				prefix = "",
 			},
 		})
+
+        vim.lsp.inlay_hint.enable(true)
 	end,
 }

@@ -35,3 +35,11 @@ vim.keymap.set("n", "<leader>cc", function()
 		vim.cmd("copen")
 	end
 end)
+
+vim.g.session_root = vim.fn.getcwd()
+vim.keymap.set("n", "<leader>cw", function()
+	local root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+	local file = vim.fn.expand("%:p")
+	local rel = vim.fn.fnamemodify(file, ":." .. root)
+	vim.fn.setreg("+", rel)
+end)
