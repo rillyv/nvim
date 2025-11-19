@@ -4,10 +4,15 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
+				php = { "php_cs_fixer" },
 				lua = { "stylua" },
 				go = { "gofmt" },
 				sql = { "sql_formatter" },
-				bash = { "beautysh" },
+				python = { "black", "isort" },
+				typescript = { "eslint" },
+				typescriptreact = { "eslint" },
+				javascript = { "eslint" },
+				javascriptreact = { "eslint" },
 			},
 			formatters = {
 				sql_formatter = {
@@ -17,6 +22,19 @@ return {
 						vim.fn.expand("~/.config/sql-formatter/config.json"),
 					},
 					stdin = true,
+				},
+				eslint = {
+					command = "npx",
+					args = {
+						"eslint",
+						"--fix",
+						"--max-warnings=0",
+						"--cache",
+					},
+					stdin = false,
+					cwd = function(ctx)
+						return ctx.root
+					end,
 				},
 			},
 		})
