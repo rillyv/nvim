@@ -4,12 +4,13 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
+				php = { "php_cs_fixer" },
 				lua = { "stylua" },
 				go = { "gofmt" },
 				sql = { "sql_formatter" },
-				bash = { "beautysh" },
+				python = { "black", "isort" },
 			},
-			formatters = {
+			formatters = { 
 				sql_formatter = {
 					command = "sql-formatter",
 					args = {

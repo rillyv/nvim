@@ -1,20 +1,53 @@
 return {
 	"nvim-telescope/telescope.nvim",
 
-	tag = "0.1.5",
+	tag = "v0.1.9",
 
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope-dap.nvim",
 	},
 
 	config = function()
-		require("telescope").setup({})
+		require("telescope").setup({
+			defaults = {
+				path_display = { "full" },
+				layout_strategy = "vertical",
+				layout_config = {
+					vertical = {
+						width = 0.95,
+						height = 0.95,
+						preview_height = 0.6,
+						preview_cutoff = 20,
+						mirror = false,
+					},
+				},
+			},
+
+			pickers = {
+				lsp_references = {
+					show_line = false,
+					fname_width = 120,
+				},
+
+				lsp_implementations = {
+					path_display = { "none" },
+					fname_width = 999,
+					show_line = false,
+				},
+
+				lsp_definitions = {
+					path_display = { "none" },
+					fname_width = 999,
+					show_line = false,
+				},
+			},
+		})
 
 		local builtin = require("telescope.builtin")
-		local utils = require("telescope.utils")
 
 		vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
-		vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+		vim.keymap.set("n", "<C-g>", builtin.git_files, {})
 		vim.keymap.set("n", "<leader>pws", function()
 			local word = vim.fn.expand("<cword>")
 			builtin.grep_string({ search = word })
@@ -26,14 +59,13 @@ return {
 		vim.keymap.set("n", "<leader>ps", function()
 			local cwd = vim.loop.cwd()
 
-			builtin.grep_string({
-				search = vim.fn.input("Grep > "),
+			require("telescope.builtin").live_grep({
 				cwd = cwd,
 				additional_args = function()
 					return { "--hidden" }
 				end,
 			})
-		end, { desc = "Grep string in project" })
+		end, { desc = "Live grep in project" })
 
 		vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
 	end,
